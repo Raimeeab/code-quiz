@@ -69,8 +69,12 @@ p {
     display:none;
 };
 
-.choices {
+.choice {
     display: flex;
     flex-direction: column;
 };
 
+button {
+    background-color: var(--highlight-colour);
+    color: var(--text-colour)
+}
