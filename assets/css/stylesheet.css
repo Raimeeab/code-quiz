@@ -1,0 +1,12 @@
+:root {
+    --background-colour: #EDF2F4;
+    --text-colour: #2B2D42;
+    --highlight-colour: #EF233C;
+}
+
+
+
+.hidden {
+display:none;
+};
+

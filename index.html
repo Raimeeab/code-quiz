@@ -1,22 +1,46 @@
-!<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
+        <title>JavaScript Quiz</title>
+        <meta name="JavaScript Quiz" content="JavaScript Quiz for beginners mulltiple choice highscores timer">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="./assets/css/reset.css">
+        <link rel="stylesheet" href="./assets/css/stylesheet.css">
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        <header>
+        <h1>Coding Quiz</h1>
+        <div>
+            <div id = "highscore"><a href=highscores.html>View Highscores</a></div>
+            <div id = "timer">time remaining:<span id="seconds"></span>s</div>
+        </div>
+        </header>
+
+        <section id = "rules">
+            <h3>Try answering as many questions as possible within the time limit! 
+                If you get a question wrong, your time will be deducted by 10 seconds.</h3>
+            <button id="begin">BEGIN</button>
+        </section>
+
+        <section id = "quiz" class="hidden">
+            <h3 id = "question"></h3>
+            <button id ="answer0" class= "choice"></button>
+            <button id ="answer1" class= "choice"></button>
+            <button id ="answer2" class= "choice"></button>
+            <button id ="answer3" class= "choice"></button>
+        </section>
         
-        <script src="" async defer></script>
+        <section id="allDone" class = "hidden">
+            <h3>All done!</h3>
+            <div id = "userInfo">
+                <label id="initials"> Enter initials to view score!<input type = "text" placeholder="Inital here"></label>
+                <p id="finalScore"></p>
+                <input type="submit" value="Submit" id="submit"/>
+            </div>
+        </section>
+        <script src="./assets/js/script.js" async defer></script>
     </body>
 </html>
