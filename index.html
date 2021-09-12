@@ -9,11 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./assets/css/reset.css">
         <link rel="stylesheet" href="./assets/css/stylesheet.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
         <h1>Coding Quiz</h1>
-        <div>
+        <div class= "nav">
             <div id = "highscore"><a href=highscores.html>View Highscores</a></div>
             <div id = "timer">time remaining:<span id="seconds"></span>s</div>
         </div>
@@ -27,10 +30,12 @@
 
         <section id = "quiz" class="hidden">
             <h3 id = "question"></h3>
-            <button id ="answer0" class= "choice"></button>
-            <button id ="answer1" class= "choice"></button>
-            <button id ="answer2" class= "choice"></button>
-            <button id ="answer3" class= "choice"></button>
+            <div class = "choices">
+                <button id ="answer0" class= "choice"></button>
+                <button id ="answer1" class= "choice"></button>
+                <button id ="answer2" class= "choice"></button>
+                <button id ="answer3" class= "choice"></button>
+            </div>
         </section>
         
         <section id="allDone" class = "hidden">

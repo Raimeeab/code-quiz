@@ -81,29 +81,7 @@ function newQuestion () {
     // if time ==== 0 endQuiz();
 };
 
-
-
-// ID selectors
-var rules = document.getElementById("rules");
-var begin = document.getElementById("begin");
-
-// Timer function --------------------------------------------------
-var seconds = document.getElementById("seconds");
-var timer = document.getElementById("timer");
-var timeRemaining = 100;
-
-
-function timer() {
-    var timerInterval = setInterval(function() {
-          timeRemaining--;
-          seconds.textContent = timeRemaining;
-          if (timeRemaining === 0) {
-          clearInterval(timerInterval);
-        }
-    }, 1000);
-};
-
-
+//
 function startQuiz() {
     var currentQuestion = questions[currentQuestionIndex];
     rules.setAttribute("class", "hidden");
@@ -118,6 +96,30 @@ function startQuiz() {
     newQuestion();
 
 };
+
+
+
+// ID selectors
+var rules = document.getElementById("rules");
+var begin = document.getElementById("begin");
+
+// Timer function --------------------------------------------------
+var seconds = document.getElementById("seconds");
+var timerEL = document.getElementById("timer");
+var timeRemaining = 101;
+
+
+function timer() {
+    var timerInterval = setInterval(function() {
+          timeRemaining--;
+          seconds.textContent = timeRemaining;
+          if (timeRemaining === 0) {
+          clearInterval(timerInterval);
+        }
+    }, 1000);
+};
+
+
 
 function checkAnswer(clickedAnswer) {
     var currentQuestion = questions[currentQuestionIndex];
@@ -138,6 +140,9 @@ function checkAnswer(clickedAnswer) {
    newQuestion();
 };
 
+
+
+// Event listeners 
 begin.addEventListener("click", function(){
     timer()
     startQuiz()

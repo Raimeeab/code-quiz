@@ -2,11 +2,75 @@
     --background-colour: #EDF2F4;
     --text-colour: #2B2D42;
     --highlight-colour: #EF233C;
+};
+
+::selection {
+    background-color: #8D99AE;
+    color: #EDF2F4;
+};
+
+
+html {
+    font-size: 62.5%;
 }
 
+body {
+    font-family: 'Urbanist','SF Pro Text','SF Pro Icons','Helvetica Neue','Helvetica','Arial', sans-serif;
+    font-size: 1.75rem;
+    line-height: 1.5;
+    color: var(--text-colour);
+    background-color: var(--background-colour);
+    padding: 0 15px;
+}
 
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.65rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: var(--highlight-colour);
+    text-align: center;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2.5rem;
+}
+
+h4 {
+    font-size: 2rem;
+}
+
+h5 {
+    font-size: 1.5rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+  
+p {
+    font-size: 1.5rem;
+    color: var(--text-colour);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
 
 .hidden {
-display:none;
+    display:none;
+};
+
+.choices {
+    display: flex;
+    flex-direction: column;
 };
 
