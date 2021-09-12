@@ -1,4 +1,4 @@
-// Quiz Questions --------------------------------------------------
+// ---------------------------- Quiz Questions ----------------------
 // ID Selectors
 var quiz = document.getElementById("quiz");
 var questionEl = document.getElementById("question");
@@ -6,10 +6,14 @@ var answerEl = document.getElementById("answer0");
 var answerEl1 = document.getElementById("answer1");
 var answerEl2 = document.getElementById("answer2");
 var answerEl3 = document.getElementById("answer3");
+var right = document.getElementById("right");
+var wrong = document.getElementById("wrong");
+var scoreEl = document.getElementById("finalScore");
 
 //Global variables 
 var currentQuestionIndex = 0;
-
+var currentQuestion;
+var score = 0;
 
 var questions = [
     {
@@ -67,11 +71,9 @@ var questions = [
 
 // Displays questions onto the screen 
 function newQuestion () {
-    var currentQuestion = questions[currentQuestionIndex];
+    currentQuestion = questions[currentQuestionIndex];
     console.log(currentQuestion);
     questionEl.textContent = currentQuestion.question;
-    console.log(currentQuestion.answers[0]);
-    console.log(answerEl);
     answerEl.textContent = currentQuestion.answers[0];
     answerEl1.textContent = currentQuestion.answers[1];
     answerEl2.textContent = currentQuestion.answers[2];
@@ -81,12 +83,11 @@ function newQuestion () {
     // if time ==== 0 endQuiz();
 };
 
-//
+
 function startQuiz() {
-    var currentQuestion = questions[currentQuestionIndex];
+    currentQuestion = questions[currentQuestionIndex];
     rules.setAttribute("class", "hidden");
     quiz.removeAttribute("class");
-    console.log("working")
 
     if(!currentQuestion) {
         console.log('quiz done')
@@ -94,16 +95,14 @@ function startQuiz() {
     };
 
     newQuestion();
-
 };
-
 
 
 // ID selectors
 var rules = document.getElementById("rules");
 var begin = document.getElementById("begin");
 
-// Timer function --------------------------------------------------
+// ---------------------- Timer function ----------------------------
 var seconds = document.getElementById("seconds");
 var timerEL = document.getElementById("timer");
 var timeRemaining = 101;
@@ -119,30 +118,42 @@ function timer() {
     }, 1000);
 };
 
-
-
+// ---------------------- Answer check ----------------------------
 function checkAnswer(clickedAnswer) {
     var currentQuestion = questions[currentQuestionIndex];
 
     if (currentQuestion.correctAnswer === clickedAnswer) {
         console.log("correct answer");
+        score++;
+        console.log(score);
+        // setTimeOut(right.textContent = "Correct!", 1000);
+        
     } else {
         console.log("wrong answer");
         timeRemaining -= 10;
+        wrong.textContent = "Wrong!"
     };
     
-    // if(currentQuestionIndex = quesitons.length) {
-    //     //endQuiz();
-    //     return;
-    // };
-
     currentQuestionIndex++;
    newQuestion();
+
+    //    if(currentQuestionIndex === questions.length) {
+    //         endQuiz();
+    //         return;
+    //     };
 };
 
 
+// ---------------------- End Quiz ---------------------- 
+function endQuiz() {
+    allDone.removeAttribute("class");
+    quiz.setAttribute("class","hidden");
+    scoreEl.textContent = score;
 
-// Event listeners 
+};
+
+// ---------------------- Event listeners ---------------------- 
+
 begin.addEventListener("click", function(){
     timer()
     startQuiz()

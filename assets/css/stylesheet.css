@@ -1,6 +1,7 @@
+/* ----- Theme ----- */
 :root {
-    --background-colour: #EDF2F4;
-    --text-colour: #2B2D42;
+    --background-colour:#2B2D42;
+    --text-colour: #EDF2F4;
     --highlight-colour: #EF233C;
 };
 
@@ -9,7 +10,7 @@
     color: #EDF2F4;
 };
 
-
+/* ----- Element Selectors, adjusting page stylings after reset.css is applied ----- */
 html {
     font-size: 62.5%;
 }
@@ -54,27 +55,43 @@ h5 {
 h6 {
     font-size: 1rem;
 }
-  
+
 p {
     font-size: 1.5rem;
     color: var(--text-colour);
 }
 
+/* Display classes */
+.hidden {
+    display:none;
+};
+
+a {
+    text-decoration: none;
+    color: var(--text-colour);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+a:hover{ 
+    background-color: var(--highlight-colour);
+}
+
+/* ----- Class Selectors ----- */
 .nav {
     display: flex;
     justify-content: space-between;
 }
 
-.hidden {
-    display:none;
-};
-
-.choice {
-    display: flex;
-    flex-direction: column;
-};
-
 button {
     background-color: var(--highlight-colour);
     color: var(--text-colour)
 }
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-colour);
+    padding: 5px;
+    border-radius: 5px;
+};
