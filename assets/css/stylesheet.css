@@ -3,12 +3,12 @@
     --background-colour:#2B2D42;
     --text-colour: #EDF2F4;
     --highlight-colour: #EF233C;
-};
+}
 
 ::selection {
     background-color: #8D99AE;
     color: #EDF2F4;
-};
+}
 
 /* ----- Element Selectors, adjusting page stylings after reset.css is applied ----- */
 html {
@@ -42,6 +42,7 @@ h2 {
 
 h3 {
     font-size: 2.5rem;
+    text-align: center;
 }
 
 h4 {
@@ -61,10 +62,6 @@ p {
     color: var(--text-colour);
 }
 
-/* Display classes */
-.hidden {
-    display:none;
-};
 
 a {
     text-decoration: none;
@@ -85,7 +82,9 @@ a:hover{
 
 button {
     background-color: var(--highlight-colour);
-    color: var(--text-colour)
+    color: var(--text-colour);
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .choices {
@@ -94,4 +93,20 @@ button {
     color: var(--text-colour);
     padding: 5px;
     border-radius: 5px;
-};
+}
+
+.hidden {
+    display:none;
+}
+
+/* ----- ID Selectors ----- */
+#begin {
+    
+}
+
+/* TARGETING ONLY highscores.html */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}

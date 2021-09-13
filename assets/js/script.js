@@ -1,52 +1,19 @@
-//Global variables 
+// ---------------------------- Global Variables ------------------------------
 var currentQuestionIndex = 0;
 var currentQuestion;
 var score = 0;
-
-// ---------------------------- Start Quiz ---------------------------
 var quiz = document.getElementById("quiz");
 var rules = document.getElementById("rules");
 var begin = document.getElementById("begin");
-
-function startQuiz() {
-    currentQuestion = questions[currentQuestionIndex];
-    rules.setAttribute("class", "hidden");
-    quiz.removeAttribute("class");
-
-    if(!currentQuestion) {
-        console.log('quiz done')
-        return;
-    };
-
-    newQuestion();
-};
-
-// ---------------------------- Timer Function ---------------------------
 var seconds = document.getElementById("seconds");
 var timerEL = document.getElementById("timer");
-var timeRemaining = 100;
+var timeRemaining = 60;
 var timerInterval;
-
-
-function timer() {
-    if (timeRemaining <= 0) {
-        endQuiz();
-    };
-    
-    if (timeRemaining <= 10) {
-        timerEL.style.color = "#EF233C";
-    };
-
-    timerInterval = setInterval(function() {
-          timeRemaining--;
-          seconds.textContent = timeRemaining;
-          if (timeRemaining === 0) {
-          clearInterval(timerInterval);
-        }
-    }, 1000);
-};
-
-// ---------------------------- Quiz Questions ---------------------------
+var questionEl = document.getElementById("question");
+var answerEl = document.getElementById("answer0");
+var answerEl1 = document.getElementById("answer1");
+var answerEl2 = document.getElementById("answer2");
+var answerEl3 = document.getElementById("answer3");
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -86,7 +53,7 @@ var questions = [
     {
         question: "How do you find the number with the highest value of x and y?",
         answers: ["Math.max(x, y)","Math.ceil(x, y)","top(x, y)", "ceil(x, y)"],
-        correctAnswer: 3,
+        correctAnswer: 0,
     },
     {
         question: "How can you detect the client's browser name?",
@@ -99,12 +66,46 @@ var questions = [
         correctAnswer: 0,
     }
 ];
-var questionEl = document.getElementById("question");
-var answerEl = document.getElementById("answer0");
-var answerEl1 = document.getElementById("answer1");
-var answerEl2 = document.getElementById("answer2");
-var answerEl3 = document.getElementById("answer3");
+var rightAnswer = document.getElementById("right");
+var wrongAnswer = document.getElementById("wrong");
+var scoreEl = document.getElementById("finalScore");
+var submitButton = document.getElementById("submit");
 
+// ---------------------------- Start Quiz ------------------------------
+function startQuiz() {
+    currentQuestion = questions[currentQuestionIndex];
+    rules.setAttribute("class", "hidden");
+    quiz.removeAttribute("class");
+
+    if(!currentQuestion) {
+        console.log('quiz done')
+        return;
+    };
+
+    newQuestion();
+};
+
+// ---------------------------- Timer Function ---------------------------
+function timer() {
+    timerInterval = setInterval(function() {
+        timeRemaining--;
+        seconds.textContent = timeRemaining;
+        if (timeRemaining <= 10) {
+            seconds.style.color = "#EF233C";
+            seconds.style.fontSize = "50px";
+        };
+        if (timeRemaining <= 0) {
+            timerEL.setAttribute("class", "hidden");
+            endQuiz();
+        };
+        if (timeRemaining === 0) {
+            clearInterval(timerInterval);
+            endQuiz();
+        }
+    }, 1000);
+};
+
+// ---------------------------- Quiz Questions ---------------------------
 function newQuestion () {
     currentQuestion = questions[currentQuestionIndex];
     console.log(currentQuestion);
@@ -116,9 +117,6 @@ function newQuestion () {
 };
 
 // ---------------------------- Answer check -------------------------
-var rightAnswer = document.getElementById("right");
-var wrongAnswer = document.getElementById("wrong");
-
 function checkAnswer(clickedAnswer) {
     var currentQuestion = questions[currentQuestionIndex];
 
@@ -153,28 +151,31 @@ function checkAnswer(clickedAnswer) {
    newQuestion();
 };
 
-
 // ---------------------------- End Quiz ---------------------------
-var scoreEl = document.getElementById("finalScore");
-
 function endQuiz() {
     clearInterval(timerInterval);
     console.log("endquiz")
     allDone.removeAttribute("class");
     quiz.setAttribute("class","hidden");
+    timerEL.setAttribute("class", "hidden");
     scoreEl.textContent = score;
 };
 
 // ---------------------------- Save Score ---------------------------
 function saveScore(){
-    var name = initials.value();
+    var name = initials.value;
     var highScore = [];
     var finalScore = {userName: name,
     score: score};
     console.log(name);
-    window.localStorage.setItem("Highscores", json.stringify(highScore));
-    //window.location.href= "highscores.html",
+    highScore.push(finalScore);
+    window.localStorage.setItem("Highscores", JSON.stringify(highScore));
+    window.location.href= "highscores.html"
 };
+
+// finalScore.sort(function(a, b) {
+//     return parseFloat(a.score) - parseFloat(b.score);
+// });
 
 // ---------------------------- Event Listeners ------------------------
 begin.addEventListener("click", function(){
@@ -199,4 +200,4 @@ answerEl1.addEventListener("click", function () {
     checkAnswer(3);
 });
 
-// submitButton.addEventListener("click", saveScore);
+submitButton.addEventListener("click", saveScore);
