@@ -1,15 +1,3 @@
-// ---------------------------- Quiz Questions ----------------------
-// ID Selectors
-var quiz = document.getElementById("quiz");
-var questionEl = document.getElementById("question");
-var answerEl = document.getElementById("answer0");
-var answerEl1 = document.getElementById("answer1");
-var answerEl2 = document.getElementById("answer2");
-var answerEl3 = document.getElementById("answer3");
-var right = document.getElementById("right");
-var wrong = document.getElementById("wrong");
-var scoreEl = document.getElementById("finalScore");
-
 //Global variables 
 var currentQuestionIndex = 0;
 var currentQuestion;
@@ -68,21 +56,10 @@ var questions = [
     }
 ];
 
-
-// Displays questions onto the screen 
-function newQuestion () {
-    currentQuestion = questions[currentQuestionIndex];
-    console.log(currentQuestion);
-    questionEl.textContent = currentQuestion.question;
-    answerEl.textContent = currentQuestion.answers[0];
-    answerEl1.textContent = currentQuestion.answers[1];
-    answerEl2.textContent = currentQuestion.answers[2];
-    answerEl3.textContent = currentQuestion.answers[3];
-
-
-    // if time ==== 0 endQuiz();
-};
-
+// ---------------------------- Start Quiz ----------------------
+var quiz = document.getElementById("quiz");
+var rules = document.getElementById("rules");
+var begin = document.getElementById("begin");
 
 function startQuiz() {
     currentQuestion = questions[currentQuestionIndex];
@@ -97,19 +74,19 @@ function startQuiz() {
     newQuestion();
 };
 
-
-// ID selectors
-var rules = document.getElementById("rules");
-var begin = document.getElementById("begin");
-
 // ---------------------- Timer function ----------------------------
 var seconds = document.getElementById("seconds");
 var timerEL = document.getElementById("timer");
 var timeRemaining = 101;
+var timerInterval;
 
 
 function timer() {
-    var timerInterval = setInterval(function() {
+    if (timeRemaining <= 0) {
+        endQuiz();
+    };
+
+    timerInterval = setInterval(function() {
           timeRemaining--;
           seconds.textContent = timeRemaining;
           if (timeRemaining === 0) {
@@ -118,7 +95,27 @@ function timer() {
     }, 1000);
 };
 
+// ---------------------------- Quiz Questions ----------------------
+var questionEl = document.getElementById("question");
+var answerEl = document.getElementById("answer0");
+var answerEl1 = document.getElementById("answer1");
+var answerEl2 = document.getElementById("answer2");
+var answerEl3 = document.getElementById("answer3");
+
+function newQuestion () {
+    currentQuestion = questions[currentQuestionIndex];
+    console.log(currentQuestion);
+    questionEl.textContent = currentQuestion.question;
+    answerEl.textContent = currentQuestion.answers[0];
+    answerEl1.textContent = currentQuestion.answers[1];
+    answerEl2.textContent = currentQuestion.answers[2];
+    answerEl3.textContent = currentQuestion.answers[3];
+};
+
 // ---------------------- Answer check ----------------------------
+var rightAnswer = document.getElementById("right");
+var wrongAnswer = document.getElementById("wrong");
+
 function checkAnswer(clickedAnswer) {
     var currentQuestion = questions[currentQuestionIndex];
 
@@ -126,35 +123,60 @@ function checkAnswer(clickedAnswer) {
         console.log("correct answer");
         score++;
         console.log(score);
-        // setTimeOut(right.textContent = "Correct!", 1000);
+        rightAnswer.setAttribute("class", "");
+        setTimeout(function() {
+            rightAnswer.setAttribute("class", "hidden");
+        }, 1000);
         
     } else {
         console.log("wrong answer");
         timeRemaining -= 10;
-        wrong.textContent = "Wrong!"
+        wrongAnswer.setAttribute("class", "");
+        setTimeout(function() {
+            wrongAnswer.setAttribute("class", "hidden");
+        }, 1000);
     };
     
     currentQuestionIndex++;
-   newQuestion();
 
-    //    if(currentQuestionIndex === questions.length) {
-    //         endQuiz();
-    //         return;
-    //     };
+    if(currentQuestionIndex === questions.length) {
+        console.log("working");
+        endQuiz();
+        return;
+    } else {
+        newQuestion();
+    };
+
+   newQuestion();
 };
 
 
 // ---------------------- End Quiz ---------------------- 
+var scoreEl = document.getElementById("finalScore");
+
 function endQuiz() {
+    clearInterval(timerInterval);
+    console.log("endquiz")
     allDone.removeAttribute("class");
     quiz.setAttribute("class","hidden");
     scoreEl.textContent = score;
+};
 
+// ---------------------- Save Score ---------------------- 
+function saveScore(){
+    var name = initials.value();
+    var highScore = [];
+    var finalScore = {userName: name,
+    score: score};
+    console.log(name);
+    window.localStorage.setItem("Highscores", json.stringify(highScore));
+    //window.location.href= "highscores.html",
 };
 
 // ---------------------- Event listeners ---------------------- 
 
 begin.addEventListener("click", function(){
+    seconds.textContent = timeRemaining;
     timer()
     startQuiz()
 });
@@ -174,3 +196,5 @@ answerEl1.addEventListener("click", function () {
   answerEl3.addEventListener("click", function () {
     checkAnswer(3);
 });
+
+// submitButton.addEventListener("click", saveScore);

@@ -38,19 +38,18 @@
                 <button id ="answer2" class="choice"></button>
                 <button id ="answer3" class="choice"></button>
             </div>
+            <div id="right" class="hidden">Correct!</div>
+            <div id="wrong" class="hidden">Wrong!</div>
         </section>
         
-        <section>
-            <div id="right"></div>
-            <div id="wrong"></div>
-        </section>
-
         <section id="allDone" class = "hidden">
             <h3>All done!</h3>
             <div id = "userInfo">
-                <label id="initials"> Enter initials to view score!<input type = "text" placeholder="Inital here"></label>
-                <p id="finalScore"></p>
-                <input type="submit" value="Submit" id="submit"/>
+                <p>You got <span id = "finalScore"></span> /10 correct 🏆</p>
+                <p>
+                    Enter initials to submit your scores: <input type="text" id="initials" placeholder="initials here"/>
+                    <button id="submit">Submit</button>
+                </p>
             </div>
         </section>
         <script src="./assets/js/script.js" async defer></script>
