@@ -3,6 +3,50 @@ var currentQuestionIndex = 0;
 var currentQuestion;
 var score = 0;
 
+// ---------------------------- Start Quiz ---------------------------
+var quiz = document.getElementById("quiz");
+var rules = document.getElementById("rules");
+var begin = document.getElementById("begin");
+
+function startQuiz() {
+    currentQuestion = questions[currentQuestionIndex];
+    rules.setAttribute("class", "hidden");
+    quiz.removeAttribute("class");
+
+    if(!currentQuestion) {
+        console.log('quiz done')
+        return;
+    };
+
+    newQuestion();
+};
+
+// ---------------------------- Timer Function ---------------------------
+var seconds = document.getElementById("seconds");
+var timerEL = document.getElementById("timer");
+var timeRemaining = 100;
+var timerInterval;
+
+
+function timer() {
+    if (timeRemaining <= 0) {
+        endQuiz();
+    };
+    
+    if (timeRemaining <= 10) {
+        timerEL.style.color = "#EF233C";
+    };
+
+    timerInterval = setInterval(function() {
+          timeRemaining--;
+          seconds.textContent = timeRemaining;
+          if (timeRemaining === 0) {
+          clearInterval(timerInterval);
+        }
+    }, 1000);
+};
+
+// ---------------------------- Quiz Questions ---------------------------
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -55,47 +99,6 @@ var questions = [
         correctAnswer: 0,
     }
 ];
-
-// ---------------------------- Start Quiz ----------------------
-var quiz = document.getElementById("quiz");
-var rules = document.getElementById("rules");
-var begin = document.getElementById("begin");
-
-function startQuiz() {
-    currentQuestion = questions[currentQuestionIndex];
-    rules.setAttribute("class", "hidden");
-    quiz.removeAttribute("class");
-
-    if(!currentQuestion) {
-        console.log('quiz done')
-        return;
-    };
-
-    newQuestion();
-};
-
-// ---------------------- Timer function ----------------------------
-var seconds = document.getElementById("seconds");
-var timerEL = document.getElementById("timer");
-var timeRemaining = 101;
-var timerInterval;
-
-
-function timer() {
-    if (timeRemaining <= 0) {
-        endQuiz();
-    };
-
-    timerInterval = setInterval(function() {
-          timeRemaining--;
-          seconds.textContent = timeRemaining;
-          if (timeRemaining === 0) {
-          clearInterval(timerInterval);
-        }
-    }, 1000);
-};
-
-// ---------------------------- Quiz Questions ----------------------
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answer0");
 var answerEl1 = document.getElementById("answer1");
@@ -112,7 +115,7 @@ function newQuestion () {
     answerEl3.textContent = currentQuestion.answers[3];
 };
 
-// ---------------------- Answer check ----------------------------
+// ---------------------------- Answer check -------------------------
 var rightAnswer = document.getElementById("right");
 var wrongAnswer = document.getElementById("wrong");
 
@@ -126,7 +129,7 @@ function checkAnswer(clickedAnswer) {
         rightAnswer.setAttribute("class", "");
         setTimeout(function() {
             rightAnswer.setAttribute("class", "hidden");
-        }, 1000);
+        }, 500);
         
     } else {
         console.log("wrong answer");
@@ -134,7 +137,7 @@ function checkAnswer(clickedAnswer) {
         wrongAnswer.setAttribute("class", "");
         setTimeout(function() {
             wrongAnswer.setAttribute("class", "hidden");
-        }, 1000);
+        }, 500);
     };
     
     currentQuestionIndex++;
@@ -151,7 +154,7 @@ function checkAnswer(clickedAnswer) {
 };
 
 
-// ---------------------- End Quiz ---------------------- 
+// ---------------------------- End Quiz ---------------------------
 var scoreEl = document.getElementById("finalScore");
 
 function endQuiz() {
@@ -162,7 +165,7 @@ function endQuiz() {
     scoreEl.textContent = score;
 };
 
-// ---------------------- Save Score ---------------------- 
+// ---------------------------- Save Score ---------------------------
 function saveScore(){
     var name = initials.value();
     var highScore = [];
@@ -173,8 +176,7 @@ function saveScore(){
     //window.location.href= "highscores.html",
 };
 
-// ---------------------- Event listeners ---------------------- 
-
+// ---------------------------- Event Listeners ------------------------
 begin.addEventListener("click", function(){
     seconds.textContent = timeRemaining;
     timer()
