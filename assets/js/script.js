@@ -163,7 +163,7 @@ function endQuiz() {
     if (score < 5) {
         console.log("fail");
         passFail.insertAdjacentText('beforeend', " 😵‍💫");
-    } else if (score >= 5) {
+    } else if (score = 0 || score >= 5) {
         console.log("pass")
         passFail.insertAdjacentText('beforeend', " 🏆");
     } else {
@@ -174,13 +174,13 @@ function endQuiz() {
 // ---------------------------- Save Score ---------------------------
 function saveScore(){
     var name = initials.value;
-    var highScore = [];
+    var highScore = JSON.parse(localStorage.getItem("Highscores")) || [];
     var currentScore = {userName: name,
     score: score};
     highScore.push(currentScore);
     window.localStorage.setItem("Highscores", JSON.stringify(highScore));
     window.location.replace("highscores.html");
-    console.log(JSON.parse(localStorage.getItem(highScore)));
+    console.log(JSON.parse(localStorage.getItem("Highscores")));
 };
 
 // finalScore.sort(function(a, b) {
