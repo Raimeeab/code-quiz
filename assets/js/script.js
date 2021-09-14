@@ -141,7 +141,6 @@ function checkAnswer(clickedAnswer) {
     currentQuestionIndex++;
 
     if(currentQuestionIndex === questions.length) {
-        console.log("working");
         endQuiz();
         return;
     } else {
@@ -163,7 +162,7 @@ function endQuiz() {
     if (score < 5) {
         console.log("fail");
         passFail.insertAdjacentText('beforeend', " 😵‍💫");
-    } else if (score = 0 || score >= 5) {
+    } else if (score === 0 || score >= 5) {
         console.log("pass")
         passFail.insertAdjacentText('beforeend', " 🏆");
     } else {
@@ -183,9 +182,6 @@ function saveScore(){
     console.log(JSON.parse(localStorage.getItem("Highscores")));
 };
 
-// finalScore.sort(function(a, b) {
-//     return parseFloat(a.score) - parseFloat(b.score);
-// });
 
 // ---------------------------- Event Listeners ------------------------
 begin.addEventListener("click", function(){
@@ -211,18 +207,3 @@ answerEl1.addEventListener("click", function () {
 });
 
 submitButton.addEventListener("click", saveScore) 
-
-
-// saveButton.addEventListener("click", function(event) {
-//     event.preventDefault();
-    
-//     var studentGrade = {
-//       student: student.value,
-//       grade: grade.value,
-//       comment: comment.value.trim()
-//     };
-    
-//     localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
-//     renderMessage();
-    
-//     });

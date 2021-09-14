@@ -140,6 +140,21 @@ button {
 /* Targeting only highscores.html */
 
 .buttons {
+    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
+
+.cstm-tbl{
+    margin-top: 20px;
+    border: 2px solid var(--highlight-colour);
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid var(--highlight-colour);
+    padding: 0.5rem;
+  }

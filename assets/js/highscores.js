@@ -1,22 +1,27 @@
 // ---------------------------- Global Variables ------------------------------
 var scoresRecorded = document.getElementById("scoresRecorded");
+var userInfo = document.createElement("tr");
+var userName = document.createElement("td");
+var userScore = document.createElement("td");
 var clearScores = document.getElementById("clearHistory");
 
-var liEL = document.createElement("li");
-
-// ---------------------------- Save Score ---------------------------
-// retrive again from local storage var highscore
-// sort highscores array
-// highScores.forEach(function(score){
-    //create li tag for each store. text content 
-    // append that to the ul element 
-    // First, you create the element, then 
-    // you add the attributes or the text to the element. 
-    // finally you append that element to the page
-    // }) 
-    
+// ---------------------------- Display Scores ---------------------------
 let scores = JSON.parse(localStorage.getItem("Highscores"));
 console.log(scores);
-liEl.innerHTML = scores;
-scoresRecorded.appendChild(liEl);
-// console.log(scoresRecorded.appendChild(liEl));
+
+scores.sort(function(a, b) {
+    return parseFloat(a.score) - parseFloat(b.score);
+});
+
+scores.forEach(function (score) {
+    userName.innerHTML = score.userName;
+    userScore.innerHTML = score.score;
+    scoresRecorded.appendChild(userInfo);
+    userInfo.append(userName, userScore);
+});
+
+// ---------------------------- Clear Scores ---------------------------
+
+clearScores.addEventListener("click", function(){
+    window.localStorage.clear("Highscores");
+});
