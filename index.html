@@ -18,15 +18,16 @@
         <h1>JavaScript Quiz</h1>
         <div class= "nav">
             <div id = "highscore"><a href=highscores.html>View Highscores</a></div>
-            <div id = "timer">time remaining:<span id="seconds"></span>s</div>
+            <div id = "timer">⏳<span id="seconds"></span>s</div>
         </div>
         </header>
 
-        <br>
+        <br><br><br>
 
         <section id = "rules">
             <h3>Try answering as many questions as possible within the time limit! 
                 If you get a question wrong, your time will be deducted by 10 seconds.</h3>
+                <br><br>
             <button id="begin">BEGIN</button>
         </section>
 
@@ -38,19 +39,22 @@
                 <button id ="answer2" class="choice"></button>
                 <button id ="answer3" class="choice"></button>
             </div>
-            <div id="right" class="hidden">Correct!</div>
-            <div id="wrong" class="hidden">Wrong!</div>
+            <br> <br>
+            <div id="right" class="hidden">Correct!🤓</div>
+            <div id="wrong" class="hidden">Wrong!😵</div>
         </section>
-        
+    
         <section id="allDone" class = "hidden">
             <br>
             <h3>All done!</h3>
             <div id = "userInfo">
-                <p>You got <span id = "finalScore"></span> /10 correct 🏆</p>
-                <p>
-                    Enter initials to submit your scores: <input type="text" id="initials" placeholder="initials here"/>
-                    <button id="submit">Submit</button>
-                </p>
+                <div class="results">
+                    <p id="passFail">You got <span id = "finalScore"></span> /10 correct</p>
+                    <p class="form">
+                        Enter initials to submit your scores: <input type="text" id="initials" placeholder="initials here"/>
+                        <button id="submit">Submit</button>
+                    </p>
+                </div>
             </div>
         </section>
         <script src="./assets/js/script.js" async defer></script>

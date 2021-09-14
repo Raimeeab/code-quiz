@@ -37,7 +37,7 @@ h1 {
 }
 
 h2 {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 h3 {
@@ -99,9 +99,42 @@ button {
     display:none;
 }
 
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
 /* ----- ID Selectors ----- */
+#highscore, 
+#timer {
+    font-size: 3rem;
+}
+
 #begin {
-    
+    margin-left: 50%;
+    transform: translateX(-50%);
+    font-size: 35px;
+}
+
+/* TODO: fix focus */
+#initials {
+    margin-bottom: 20px;
+    outline: var(--highlight-colour);
+}
+/* #initials:focus {
+    outline: var(--highlight-colour);
+} */
+
+#right,
+#wrong {
+    text-align: center;
+    font-size: 4rem;
 }
 
 /* TARGETING ONLY highscores.html */

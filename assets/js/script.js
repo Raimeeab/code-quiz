@@ -1,7 +1,5 @@
 // ---------------------------- Global Variables ------------------------------
-var currentQuestionIndex = 0;
-var currentQuestion;
-var score = 0;
+var highScoreEl = document.getElementById("highscore");
 var quiz = document.getElementById("quiz");
 var rules = document.getElementById("rules");
 var begin = document.getElementById("begin");
@@ -70,12 +68,14 @@ var rightAnswer = document.getElementById("right");
 var wrongAnswer = document.getElementById("wrong");
 var scoreEl = document.getElementById("finalScore");
 var submitButton = document.getElementById("submit");
-
+var currentQuestionIndex = 0;
+var currentQuestion;
+var score = 0;
 // ---------------------------- Start Quiz ------------------------------
 function startQuiz() {
     currentQuestion = questions[currentQuestionIndex];
     rules.setAttribute("class", "hidden");
-    quiz.removeAttribute("class");
+    quiz.removeAttribute("class");    
 
     if(!currentQuestion) {
         console.log('quiz done')
@@ -127,7 +127,7 @@ function checkAnswer(clickedAnswer) {
         rightAnswer.setAttribute("class", "");
         setTimeout(function() {
             rightAnswer.setAttribute("class", "hidden");
-        }, 500);
+        }, 900);
         
     } else {
         console.log("wrong answer");
@@ -135,7 +135,7 @@ function checkAnswer(clickedAnswer) {
         wrongAnswer.setAttribute("class", "");
         setTimeout(function() {
             wrongAnswer.setAttribute("class", "hidden");
-        }, 500);
+        }, 900);
     };
     
     currentQuestionIndex++;
@@ -159,18 +159,28 @@ function endQuiz() {
     quiz.setAttribute("class","hidden");
     timerEL.setAttribute("class", "hidden");
     scoreEl.textContent = score;
+    var passFail = document.getElementById("passFail");
+    if (score < 5) {
+        console.log("fail");
+        passFail.insertAdjacentText('beforeend', " 😵‍💫");
+    } else if (score >= 5) {
+        console.log("pass")
+        passFail.insertAdjacentText('beforeend', " 🏆");
+    } else {
+        passFail.insertAdjacentText('beforeend', "");
+    };
 };
 
 // ---------------------------- Save Score ---------------------------
 function saveScore(){
     var name = initials.value;
     var highScore = [];
-    var finalScore = {userName: name,
+    var currentScore = {userName: name,
     score: score};
-    console.log(name);
-    highScore.push(finalScore);
+    highScore.push(currentScore);
     window.localStorage.setItem("Highscores", JSON.stringify(highScore));
-    window.location.href= "highscores.html"
+    window.location.replace("highscores.html");
+    console.log(JSON.parse(localStorage.getItem(highScore)));
 };
 
 // finalScore.sort(function(a, b) {
@@ -200,4 +210,19 @@ answerEl1.addEventListener("click", function () {
     checkAnswer(3);
 });
 
-submitButton.addEventListener("click", saveScore);
+submitButton.addEventListener("click", saveScore) 
+
+
+// saveButton.addEventListener("click", function(event) {
+//     event.preventDefault();
+    
+//     var studentGrade = {
+//       student: student.value,
+//       grade: grade.value,
+//       comment: comment.value.trim()
+//     };
+    
+//     localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
+//     renderMessage();
+    
+//     });
