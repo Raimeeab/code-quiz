@@ -155,6 +155,12 @@ button {
 }
 
 td, th {
-    border: 1px solid var(--highlight-colour);
+    border: 2px solid var(--highlight-colour);
     padding: 0.5rem;
-  }
+}
+
+thead tr td {
+    text-align: center;
+    color: var(--highlight-colour);
+    font-weight: 900;
+}
