@@ -1,6 +1,6 @@
 <img alt="GitHub followers" src="https://img.shields.io/github/followers/Raimeeab?style=social"><img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Raimeeab/code-quiz?style=social"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Raimeeab/code-quiz?style=social">
 
-https://user-images.githubusercontent.com/86146833/133437489-5d888eb5-9f3c-4b00-a3a4-1c0e38ef9ead.mov
+![quiz-demo](https://user-images.githubusercontent.com/86146833/133438095-46015438-7033-406f-906d-1b01783208b5.gif)
 
 # Code Quiz
 ---
