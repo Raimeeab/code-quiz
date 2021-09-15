@@ -11,18 +11,19 @@ scores.sort(function(a, b) {
 
 // ---------------------------- Display & Clear Scores ---------------------------
 scores.forEach(function (score) {
-    var userInfo = document.createElement("tr");
-    var userName = document.createElement("td");
-    var userScore = document.createElement("td");
-    userName.innerHTML = score.userName;
-    userScore.innerHTML = score.score;
-    scoresRecorded.appendChild(userInfo);
-    userInfo.append(userName, userScore);
+  //displays higscores in vp
+  var userInfo = document.createElement("tr");
+  var userName = document.createElement("td");
+  var userScore = document.createElement("td");
+  userName.innerHTML = score.userName;
+  userScore.innerHTML = score.score;
+  scoresRecorded.appendChild(userInfo);
+  userInfo.append(userName, userScore);
 
-    //clears data from localStorage and vp
-    clearScores.addEventListener("click", function(){
-        window.localStorage.clear("Highscores");
-        userInfo.remove(userName, userScore);
-    });
+  //clears data from localStorage and vp
+  clearScores.addEventListener("click", function(){
+      window.localStorage.clear("Highscores");
+      userInfo.remove(userName, userScore);
+  });
 });
 

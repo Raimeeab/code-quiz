@@ -74,17 +74,17 @@ a:hover{
     background-color: var(--highlight-colour);
 }
 
-/* ----- Class Selectors ----- */
-.nav {
-    display: flex;
-    justify-content: space-between;
-}
-
 button {
     background-color: var(--highlight-colour);
     color: var(--text-colour);
     padding: 5px;
     border-radius: 5px;
+}
+
+/* ----- Class Selectors ----- */
+.nav {
+    display: flex;
+    justify-content: space-between;
 }
 
 .choices {
@@ -122,14 +122,9 @@ button {
     font-size: 35px;
 }
 
-/* TODO: fix focus */
 #initials {
     margin-bottom: 20px;
-    outline: var(--highlight-colour);
 }
-/* #initials:focus {
-    outline: var(--highlight-colour);
-} */
 
 #right,
 #wrong {
@@ -166,5 +161,4 @@ thead tr td {
 
 td {
     text-align: center;
-    border-radius: 50px;
 }

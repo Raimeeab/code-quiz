@@ -5,7 +5,7 @@ var rules = document.getElementById("rules");
 var begin = document.getElementById("begin");
 var seconds = document.getElementById("seconds");
 var timerEL = document.getElementById("timer");
-var timeRemaining = 60;
+var timeRemaining = 100;
 var timerInterval;
 var questionEl = document.getElementById("question");
 var answerEl = document.getElementById("answer0");
@@ -75,11 +75,11 @@ var score = 0;
 // ---------------------------- Start Quiz ------------------------------
 function startQuiz() {
     currentQuestion = questions[currentQuestionIndex];
+    //toggles between HTML sections
     rules.setAttribute("class", "hidden");
     quiz.removeAttribute("class");    
 
     if(!currentQuestion) {
-        console.log('quiz done')
         return;
     };
 
@@ -106,10 +106,9 @@ function timer() {
     }, 1000);
 };
 
-// ---------------------------- Quiz Questions ---------------------------
+// ---------------------------- Displaying Questions ---------------------------
 function newQuestion () {
     currentQuestion = questions[currentQuestionIndex];
-    console.log(currentQuestion);
     questionEl.textContent = currentQuestion.question;
     answerEl.textContent = currentQuestion.answers[0];
     answerEl1.textContent = currentQuestion.answers[1];
@@ -122,16 +121,13 @@ function checkAnswer(clickedAnswer) {
     var currentQuestion = questions[currentQuestionIndex];
 
     if (currentQuestion.correctAnswer === clickedAnswer) {
-        console.log("correct answer");
         score++;
-        console.log(score);
         rightAnswer.setAttribute("class", "");
         setTimeout(function() {
             rightAnswer.setAttribute("class", "hidden");
         }, 900);
         
     } else {
-        console.log("wrong answer");
         timeRemaining -= 10;
         wrongAnswer.setAttribute("class", "");
         setTimeout(function() {
@@ -154,17 +150,15 @@ function checkAnswer(clickedAnswer) {
 // ---------------------------- End Quiz ---------------------------
 function endQuiz() {
     clearInterval(timerInterval);
-    console.log("endquiz")
+    //toggles between HTML sections
     allDone.removeAttribute("class");
     quiz.setAttribute("class","hidden");
     timerEL.setAttribute("class", "hidden");
     scoreEl.textContent = score;
     var passFail = document.getElementById("passFail");
     if (score < 5) {
-        console.log("fail");
         passFail.insertAdjacentText('beforeend', " 😵‍💫");
     } else if (score === 0 || score >= 5) {
-        console.log("pass")
         passFail.insertAdjacentText('beforeend', " 🏆");
     } else {
         passFail.insertAdjacentText('beforeend', "");
@@ -178,21 +172,22 @@ function saveScore(){
         alert("Please enter initials");
         return;
     };
+    // Add key and value to localStorage
     var highScore = JSON.parse(localStorage.getItem("Highscores")) || [];
     var currentScore = {userName: name,
     score: score};
     highScore.push(currentScore);
+    // Put the object into storage and moves it to highscores.html
     window.localStorage.setItem("Highscores", JSON.stringify(highScore));
     window.location.replace("highscores.html");
-    console.log(JSON.parse(localStorage.getItem("Highscores")));
 };
 
 
 // ---------------------------- Event Listeners ------------------------
 begin.addEventListener("click", function(){
     seconds.textContent = timeRemaining;
-    timer()
-    startQuiz()
+    timer();
+    startQuiz();
 });
 
 answerEl.addEventListener("click", function () {
@@ -203,12 +198,12 @@ answerEl1.addEventListener("click", function () {
     checkAnswer(1);
 });
   
-  answerEl2.addEventListener("click", function () {
+answerEl2.addEventListener("click", function () {
     checkAnswer(2);
 });
   
-  answerEl3.addEventListener("click", function () {
+answerEl3.addEventListener("click", function () {
     checkAnswer(3);
 });
 
-submitButton.addEventListener("click", saveScore) 
+submitButton.addEventListener("click", saveScore);
