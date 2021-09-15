@@ -67,6 +67,7 @@ var questions = [
 var rightAnswer = document.getElementById("right");
 var wrongAnswer = document.getElementById("wrong");
 var scoreEl = document.getElementById("finalScore");
+var initialsEl = document.getElementById("initials");
 var submitButton = document.getElementById("submit");
 var currentQuestionIndex = 0;
 var currentQuestion;
@@ -173,6 +174,10 @@ function endQuiz() {
 // ---------------------------- Save Score ---------------------------
 function saveScore(){
     var name = initials.value;
+    if (initialsEl.value === "") {
+        alert("Please enter initials");
+        return;
+    };
     var highScore = JSON.parse(localStorage.getItem("Highscores")) || [];
     var currentScore = {userName: name,
     score: score};

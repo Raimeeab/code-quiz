@@ -2,10 +2,14 @@
 var scoresRecorded = document.getElementById("scoresRecorded");
 var clearScores = document.getElementById("clearHistory");
 
-// ---------------------------- Display Scores ---------------------------
+// ---------------------------- Sort Scores ---------------------------
 let scores = JSON.parse(localStorage.getItem("Highscores"));
 
+scores.sort(function(a, b) {
+  return(parseInt(b.score) - parseInt(a.score));
+});
 
+// ---------------------------- Display & Clear Scores ---------------------------
 scores.forEach(function (score) {
     var userInfo = document.createElement("tr");
     var userName = document.createElement("td");
@@ -14,17 +18,11 @@ scores.forEach(function (score) {
     userScore.innerHTML = score.score;
     scoresRecorded.appendChild(userInfo);
     userInfo.append(userName, userScore);
+
+    //clears data from localStorage and vp
+    clearScores.addEventListener("click", function(){
+        window.localStorage.clear("Highscores");
+        userInfo.remove(userName, userScore);
+    });
 });
 
-// ---------------------------- Sort Scores ---------------------------
-scores.sort(function(a, b) {
-    return(parseFloat(a.score) - parseFloat(b.score));
-});
-
-
-// ---------------------------- Clear Scores ---------------------------
-
-clearScores.addEventListener("click", function(){
-    window.localStorage.clear("Highscores");
-    userInfo.remove(userName, userScore);
-});
