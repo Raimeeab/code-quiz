@@ -168,6 +168,7 @@ function endQuiz() {
 // ---------------------------- Save Score ---------------------------
 function saveScore(){
     var name = initials.value;
+    name = name.toUpperCase();
     if (initialsEl.value === "") {
         alert("Please enter initials");
         return;

@@ -124,6 +124,7 @@ button {
 
 #initials {
     margin-bottom: 20px;
+    outline-color: var(--highlight-colour);
 }
 
 #right,
