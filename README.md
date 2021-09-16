@@ -1,15 +1,13 @@
-<img alt="GitHub followers" src="https://img.shields.io/github/followers/Raimeeab?style=social">
-<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Raimeeab/code-quiz?style=social">     
-<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Raimeeab/code-quiz?style=social">
-
+<img alt="GitHub followers" src="https://img.shields.io/github/followers/Raimeeab?style=social"><img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Raimeeab/code-quiz?style=social"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Raimeeab/code-quiz?style=social">
 # Code Quiz
 ---
+![quiz-demo](https://user-images.githubusercontent.com/86146833/133442872-e1fb59b6-849f-4c69-8a7a-b2ada318585f.gif)
 
 ## Description
 
-This project is a timed coding quiz with multpile choice questions which are updated dynamically using JavaScript. I was motivated to create an interactive, colourful page with a clean and responsive user interface. This has taugt me how to use DOM elements, eventListeners, functions and how to dynamically update HTML and CSS using JavaScript
+This project is a timed coding quiz with multpile choice questions which are updated dynamically using JavaScript. I was motivated to create an interactive, colourful page with a clean and responsive user interface. This has taught me how to use DOM elements, eventListeners, functions and how to dynamically update HTML and CSS using JavaScript
 
-link to the [site](web address here)
+link to the [site](https://raimeeab.github.io/code-quiz/)
 
 ## Technologies used 
 
@@ -17,9 +15,10 @@ HTML, CSS and JavaScript
 
 ## Usage
 
-Start the quiz by pressing the begin button, which will start the timer and load the mutliple choice question one at a time. If the user gets a question wrong, 10 seconds is deducted from their timer. Once the quiz is complete, the user will get their score and be asked to enter their initials, which will then take them to the highscores page to see where their ranked.
+Start the quiz by pressing the begin button, which will start the timer and load the mutliple choice questions one at a time. If the user gets a question wrong, 10 seconds is deducted from their timer. Once the quiz is complete, the user will get their score and be asked to enter their initials, which will then take them to the highscores page to see where they're ranked.
 
 - An alert appears should the user attempt to submit an empty form
+- User can clear their highscore list 
 
 ## Contributors
 *The Univserity of Sydney | Trilogy Education Services*
