@@ -5,7 +5,7 @@ var clearScores = document.getElementById("clearHistory");
 let scores = JSON.parse(localStorage.getItem("Highscores"));
 
 if(scores) {
-  // sort scores
+  // sort the scores
   scores.sort(function(a, b) {
     return(parseInt(b.score) - parseInt(a.score));
   });
