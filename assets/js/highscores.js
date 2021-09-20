@@ -2,6 +2,7 @@
 var scoresRecorded = document.getElementById("scoresRecorded");
 var clearScores = document.getElementById("clearHistory");
 
+// ---------------------------- Retrieve values from localStorage --------------
 let scores = JSON.parse(localStorage.getItem("Highscores"));
 
 if(scores) {
